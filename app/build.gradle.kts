@@ -2,6 +2,9 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    id(libs.plugins.hilt.kapt.get().pluginId)
+    id(libs.plugins.hilt.plugin.get().pluginId)
+    id(libs.plugins.ksp.plugin.get().pluginId)
 }
 
 android {
@@ -49,6 +52,25 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+
+    // Retrofit
+    implementation(libs.retrofit)
+    implementation(libs.gson.converter)
+
+    // Okhttp
+    implementation(libs.okhttp)
+
+    // Gson
+    implementation(libs.gson)
+
+    // Hilt
+    implementation(libs.hilt)
+    implementation(libs.hilt.navigation)
+    kapt(libs.hilt.kapt)
+
+    // Arrow
+    implementation(libs.arrow)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -56,4 +78,7 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+}
+kapt {
+    correctErrorTypes = true
 }
