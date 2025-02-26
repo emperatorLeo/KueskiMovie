@@ -1,10 +1,13 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
+    id(libs.plugins.hilt.kapt.get().pluginId)
+    id(libs.plugins.hilt.plugin.get().pluginId)
+    id(libs.plugins.ksp.plugin.get().pluginId)
 }
 
 android {
-    namespace = "com.example.listmovies"
+    namespace = "com.example.common"
     compileSdk = 35
 
     defaultConfig {
@@ -33,9 +36,34 @@ android {
 }
 
 dependencies {
+    api(libs.androidx.core.ktx)
+    api(libs.androidx.appcompat)
+    api(libs.material)
+
+    // Retrofit
+    api(libs.retrofit)
+    api(libs.gson.converter)
+
+    // Okhttp
+    api(libs.okhttp)
+    api(libs.okhttp.logging.interceptor)
+
+    // Gson
+    api(libs.gson)
+
+    // Hilt
+    api(libs.hilt)
+    api(libs.hilt.navigation)
+    kapt(libs.hilt.kapt)
+
+    // Arrow
+    api(libs.arrow)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-    implementation(project(":common"))
-    implementation(project(":networking"))
+}
+
+kapt {
+    correctErrorTypes = true
 }

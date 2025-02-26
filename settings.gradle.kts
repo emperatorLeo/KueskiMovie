@@ -23,3 +23,4 @@ rootProject.name = "KueskiMovie"
 include(":app")
 include(":listMovies")
 include(":networking")
+include(":common")
