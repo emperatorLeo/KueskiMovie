@@ -21,4 +21,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "KueskiMovie"
 include(":app")
- 
+include(":listMovies")
+include(":networking")
