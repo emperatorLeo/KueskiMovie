@@ -1,4 +1,4 @@
-package com.example.listmovies.data.usecase
+package com.example.listmovies.usecase
 
 import com.example.listmovies.data.repository.ListRepository
 import javax.inject.Inject

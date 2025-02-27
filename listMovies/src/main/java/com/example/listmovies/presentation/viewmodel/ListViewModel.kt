@@ -3,7 +3,8 @@ package com.example.listmovies.presentation.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import arrow.core.Either
-import com.example.listmovies.data.usecase.GetPopularMoviesUseCase
+import com.example.listmovies.domain.PopularMovieDto
+import com.example.listmovies.usecase.GetPopularMoviesUseCase
 import com.example.listmovies.presentation.states.UiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -17,6 +18,8 @@ class ListViewModel @Inject constructor(private val getPopularMoviesUseCase: Get
     private val _uiState = MutableStateFlow<UiState>(UiState.Idle)
     val uiState get() = _uiState.asStateFlow()
 
+    private val cacheMovieList = mutableListOf<PopularMovieDto>()
+
     fun getPopularMovies() {
         viewModelScope.launch {
             _uiState.value = UiState.Loading
@@ -27,10 +30,20 @@ class ListViewModel @Inject constructor(private val getPopularMoviesUseCase: Get
                     }
 
                     is Either.Right -> {
+                        cacheMovieList.clear()
+                        cacheMovieList.addAll(it.value)
                         _uiState.value = UiState.Success(it.value)
                     }
                 }
             }
         }
     }
+
+    fun searchMovies(movieName: String) {
+        val result = cacheMovieList.filter { movie ->
+            movie.title.lowercase().trim().contains(movieName.lowercase().trim())
+        }
+        _uiState.value = UiState.Success(result)
+    }
+
 }

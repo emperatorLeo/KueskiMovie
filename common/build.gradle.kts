@@ -66,6 +66,10 @@ dependencies {
     // Arrow
     api(libs.arrow)
 
+    // Coil
+    api(libs.coil)
+    api(libs.coil.network)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

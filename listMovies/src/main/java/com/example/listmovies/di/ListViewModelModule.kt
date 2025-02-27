@@ -1,6 +1,6 @@
 package com.example.listmovies.di
 
-import com.example.listmovies.data.usecase.GetPopularMoviesUseCase
+import com.example.listmovies.usecase.GetPopularMoviesUseCase
 import com.example.listmovies.presentation.viewmodel.ListViewModel
 import dagger.Module
 import dagger.Provides
