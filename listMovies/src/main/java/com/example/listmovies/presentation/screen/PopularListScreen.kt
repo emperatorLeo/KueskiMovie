@@ -16,8 +16,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.listmovies.presentation.component.ErrorComponent
 import com.example.listmovies.presentation.component.LoaderComponent
 import com.example.listmovies.presentation.component.MovieItem
+import com.example.listmovies.presentation.component.NoInternetComponent
 import com.example.listmovies.presentation.component.SearchBarComponent
 import com.example.listmovies.presentation.states.UiState
 import com.example.listmovies.presentation.viewmodel.ListViewModel
@@ -30,6 +32,7 @@ fun PopularListScreen(
     paddingValues: PaddingValues = PaddingValues(),
     viewModel: ListViewModel = viewModel()
 ) {
+    viewModel.checkConnection()
     LaunchedEffect(Unit) {
         viewModel.getPopularMovies()
     }
@@ -59,7 +62,10 @@ fun PopularListScreen(
 
         when (state.value) {
             is UiState.Idle -> {}
-            is UiState.Error -> TODO()
+            is UiState.Error -> item {
+                ErrorComponent()
+            }
+
             is UiState.Loading -> {
                 searchBarEnabled = false
                 item {
@@ -69,10 +75,16 @@ fun PopularListScreen(
 
             is UiState.Success -> {
                 searchBarEnabled = true
-                items((state.value as UiState.Success).data){
+                items((state.value as UiState.Success).data) {
                     MovieItem(it) {
 
                     }
+                }
+            }
+
+            is UiState.NoInternetError -> {
+                item {
+                    NoInternetComponent()
                 }
             }
         }
