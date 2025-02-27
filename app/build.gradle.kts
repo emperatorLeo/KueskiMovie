@@ -66,6 +66,7 @@ dependencies {
 
     implementation(project(":common"))
     implementation(project(":listMovies"))
+    implementation(project(":details"))
 }
 
 kapt {

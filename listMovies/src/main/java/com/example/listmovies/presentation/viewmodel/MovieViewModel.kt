@@ -2,14 +2,12 @@ package com.example.listmovies.presentation.viewmodel
 
 import android.net.ConnectivityManager
 import android.net.Network
-import android.util.Log
-import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import arrow.core.Either
 import com.example.listmovies.domain.PopularMovieDto
-import com.example.listmovies.usecase.GetPopularMoviesUseCase
 import com.example.listmovies.presentation.states.UiState
+import com.example.listmovies.usecase.GetPopularMoviesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -17,7 +15,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class ListViewModel @Inject constructor(
+class MovieViewModel @Inject constructor(
     private val getPopularMoviesUseCase: GetPopularMoviesUseCase,
     private val connectivity: ConnectivityManager,
 ) :
@@ -29,13 +27,6 @@ class ListViewModel @Inject constructor(
     private val connectionStatus = _connectionStatus.asStateFlow()
 
     private val cacheMovieList = mutableListOf<PopularMovieDto>()
-
-    private val _selectedMovie = mutableStateOf(PopularMovieDto.EMPTY)
-    val selectedMovie get() = _selectedMovie
-
-    init {
-        Log.d("Leo", "initializing view model..")
-    }
 
     fun getPopularMovies() {
         viewModelScope.launch {
@@ -81,8 +72,7 @@ class ListViewModel @Inject constructor(
         })
     }
 
-    fun selectingMovie(movieId: Int) {
-        _selectedMovie.value = cacheMovieList.find { it.id == movieId } ?: PopularMovieDto.EMPTY
-    }
+    fun getSelectedMovie(movieId: Int) =
+        cacheMovieList.find { it.id == movieId } ?: PopularMovieDto.EMPTY
 
 }

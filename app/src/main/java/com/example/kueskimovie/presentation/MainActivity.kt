@@ -7,8 +7,9 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.kueskimovie.presentation.navigation.AppNavigation
 import com.example.kueskimovie.presentation.theme.KueskiMovieTheme
-import com.example.listmovies.presentation.screen.PopularListScreen
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -21,7 +22,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             KueskiMovieTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    PopularListScreen(paddingValues = innerPadding)
+                    AppNavigation(paddingValues = innerPadding, viewModel = viewModel())
                 }
             }
         }
