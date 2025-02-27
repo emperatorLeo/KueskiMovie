@@ -30,7 +30,7 @@ fun NoInternetComponent() {
     ) {
         Image(
             modifier = Modifier.size(Dimen200dp),
-            painter = painterResource(R.drawable.ic_error_conection),
+            painter = painterResource(R.drawable.ic_error_connection),
             contentDescription = ""
         )
 
