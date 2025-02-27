@@ -25,7 +25,6 @@ import com.example.listmovies.presentation.states.UiState
 import com.example.listmovies.presentation.viewmodel.ListViewModel
 import com.example.listmovies.util.EMPTY_STRING
 
-
 @Composable
 @Preview(showBackground = true)
 fun PopularListScreen(
@@ -76,8 +75,8 @@ fun PopularListScreen(
             is UiState.Success -> {
                 searchBarEnabled = true
                 items((state.value as UiState.Success).data) {
-                    MovieItem(it) {
-
+                    MovieItem(it) { movieId ->
+                        viewModel.selectingMovie(movieId)
                     }
                 }
             }

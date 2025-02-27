@@ -30,7 +30,7 @@ fun ErrorComponent() {
     ) {
         Image(
             modifier = Modifier.size(Dimen200dp),
-            painter = painterResource(R.drawable.ic_error),
+            painter = painterResource(com.example.common.R.drawable.ic_error),
             contentDescription = ""
         )
 

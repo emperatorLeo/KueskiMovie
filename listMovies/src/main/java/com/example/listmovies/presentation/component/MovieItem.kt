@@ -23,7 +23,7 @@ import com.example.common.presentation.Dimen80dp
 import com.example.common.presentation.Font12sp
 import com.example.common.presentation.Font15sp
 import com.example.common.util.getPosterUrl
-import com.example.listmovies.R
+import com.example.common.R
 import com.example.listmovies.domain.PopularMovieDto
 
 @Composable

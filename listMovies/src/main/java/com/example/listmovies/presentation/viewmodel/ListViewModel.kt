@@ -2,6 +2,8 @@ package com.example.listmovies.presentation.viewmodel
 
 import android.net.ConnectivityManager
 import android.net.Network
+import android.util.Log
+import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import arrow.core.Either
@@ -27,6 +29,13 @@ class ListViewModel @Inject constructor(
     private val connectionStatus = _connectionStatus.asStateFlow()
 
     private val cacheMovieList = mutableListOf<PopularMovieDto>()
+
+    private val _selectedMovie = mutableStateOf(PopularMovieDto.EMPTY)
+    val selectedMovie get() = _selectedMovie
+
+    init {
+        Log.d("Leo", "initializing view model..")
+    }
 
     fun getPopularMovies() {
         viewModelScope.launch {
@@ -70,6 +79,10 @@ class ListViewModel @Inject constructor(
                 _connectionStatus.value = true
             }
         })
+    }
+
+    fun selectingMovie(movieId: Int) {
+        _selectedMovie.value = cacheMovieList.find { it.id == movieId } ?: PopularMovieDto.EMPTY
     }
 
 }

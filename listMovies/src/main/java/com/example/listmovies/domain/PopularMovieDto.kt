@@ -7,4 +7,7 @@ data class PopularMovieDto(
     val description: String,
     val posterImage: String,
     val releaseDate: String
-)
+) {
+   companion object { val EMPTY = PopularMovieDto(0, "", "", "", "", "") }
+}
+
