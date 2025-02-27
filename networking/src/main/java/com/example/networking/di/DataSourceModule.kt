@@ -1,6 +1,6 @@
 package com.example.networking.di
 
-import com.example.networking.const.BASE_URL
+import com.example.networking.util.BASE_URL
 import com.example.networking.interceptor.MovieInterceptor
 import dagger.Module
 import dagger.Provides
@@ -21,12 +21,14 @@ object DataSourceModule {
     fun provideRetrofitObject(): Retrofit {
         val logging = HttpLoggingInterceptor()
         logging.level = HttpLoggingInterceptor.Level.BODY
+        val client =
+            OkHttpClient.Builder().addInterceptor(logging).addInterceptor(MovieInterceptor())
+                .build()
 
         return Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
-            .client(OkHttpClient.Builder().addInterceptor(MovieInterceptor()).build())
-            .client(OkHttpClient.Builder().addInterceptor(logging).build())
+            .client(client)
             .build()
     }
 }

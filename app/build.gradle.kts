@@ -2,6 +2,9 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    id(libs.plugins.hilt.kapt.get().pluginId)
+    id(libs.plugins.hilt.plugin.get().pluginId)
+    id(libs.plugins.ksp.plugin.get().pluginId)
 }
 
 android {
@@ -41,8 +44,6 @@ android {
 
 dependencies {
 
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.ui)
@@ -58,5 +59,15 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
+    // Hilt
+    api(libs.hilt)
+    api(libs.hilt.navigation)
+    kapt(libs.hilt.kapt)
+
     implementation(project(":common"))
+    implementation(project(":listMovies"))
+}
+
+kapt {
+    correctErrorTypes = true
 }

@@ -1,4 +1,4 @@
-package com.example.kueskimovie
+package com.example.kueskimovie.presentation
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -6,10 +6,12 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Scaffold
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
-import com.example.kueskimovie.ui.theme.KueskiMovieTheme
+import com.example.kueskimovie.presentation.theme.KueskiMovieTheme
+import com.example.listmovies.presentation.screen.PopularListScreen
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,9 +21,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             KueskiMovieTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    LaunchedEffect(Unit) {
-
-                    }
+                    PopularListScreen()
                 }
             }
         }
