@@ -8,4 +8,5 @@ sealed class UiState {
     data object Idle : UiState()
     data object Loading : UiState()
     data object NoInternetError : UiState()
+    data object NoMovieFound: UiState()
 }

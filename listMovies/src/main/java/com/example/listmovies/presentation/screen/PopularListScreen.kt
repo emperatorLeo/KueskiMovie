@@ -19,6 +19,7 @@ import androidx.navigation.NavController
 import com.example.listmovies.presentation.component.ErrorComponent
 import com.example.listmovies.presentation.component.LoaderComponent
 import com.example.listmovies.presentation.component.MovieItem
+import com.example.listmovies.presentation.component.MovieNotFoundComponent
 import com.example.listmovies.presentation.component.NoInternetComponent
 import com.example.listmovies.presentation.component.SearchBarComponent
 import com.example.listmovies.presentation.navigation.AppRoutes
@@ -90,6 +91,12 @@ fun PopularListScreen(
             is UiState.NoInternetError -> {
                 item {
                     NoInternetComponent()
+                }
+            }
+
+            is UiState.NoMovieFound -> {
+                item {
+                    MovieNotFoundComponent()
                 }
             }
         }

@@ -77,7 +77,11 @@ class MovieViewModel @Inject constructor(
         val result = cacheMovieList.filter { movie ->
             movie.title.lowercase().trim().contains(movieName.lowercase().trim())
         }
-        _uiState.value = UiState.Success(result)
+        if (result.isEmpty()) {
+            _uiState.value = UiState.NoMovieFound
+        } else {
+            _uiState.value = UiState.Success(result)
+        }
     }
 
     fun checkConnection() {

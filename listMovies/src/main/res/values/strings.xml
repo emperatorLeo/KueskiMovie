@@ -3,5 +3,6 @@
     <string name="search_your_movie">Busca tu pelicula por nombre</string>
     <string name="please_wait">Por favor espere…</string>
     <string name="error">Tuvimos un error, intenta nuevamente mas tarde!</string>
-    <string name="no_internet">Vaya parece que no tienes conexión a internet!</string>
+    <string name="no_internet">Vaya!, parece que no tienes conexión a internet!</string>
+    <string name="movie_not_found">Vaya!, parece que no tenemos esa pelicula</string>
 </resources>
