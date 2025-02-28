@@ -7,6 +7,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.Icon
@@ -22,10 +24,10 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.navigation.NavController
 import coil3.compose.AsyncImage
-import com.example.common.presentation.Dimen100dp
 import com.example.common.presentation.Dimen10dp
 import com.example.common.presentation.Dimen200dp
 import com.example.common.presentation.Dimen20dp
+import com.example.common.presentation.Dimen400dp
 import com.example.common.presentation.Dimen50dp
 import com.example.common.presentation.Font12sp
 import com.example.common.presentation.Font15sp
@@ -37,7 +39,7 @@ import com.example.listmovies.presentation.viewmodel.MovieViewModel
 fun DetailsScreen(viewModel: MovieViewModel, navController: NavController, movieId: Int) {
 
     val movie = viewModel.getSelectedMovie(movieId)
-
+    val genres = viewModel.genreMovie.joinToString(", ") { it.genreName }
     Column(Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally) {
         Row(
             modifier = Modifier
@@ -55,7 +57,7 @@ fun DetailsScreen(viewModel: MovieViewModel, navController: NavController, movie
         }
         AsyncImage(
             modifier = Modifier
-                .padding(top = Dimen100dp, bottom = Dimen10dp)
+                .padding(top = Dimen20dp, bottom = Dimen10dp)
                 .size(Dimen200dp),
             model = getPosterUrl(movie.posterImage),
             contentDescription = null,
@@ -76,11 +78,29 @@ fun DetailsScreen(viewModel: MovieViewModel, navController: NavController, movie
         )
 
         Text(
-            stringResource(R.string.lenguage_label, movie.language),
+            stringResource(R.string.lenguage_label, movie.language.uppercase()),
             modifier = Modifier.padding(top = Dimen10dp),
             fontSize = Font12sp,
             style = TextStyle(fontStyle = FontStyle.Normal, fontWeight = FontWeight.Medium)
         )
+        Row(
+            modifier = Modifier.padding(top = Dimen10dp)
+                .wrapContentHeight()
+                .width(Dimen400dp)
+                .padding(start = Dimen20dp, end = Dimen20dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Text(
+                stringResource(R.string.genre_label),
+                modifier = Modifier.padding(end = Dimen10dp),
+                fontSize = Font12sp,
+                style = TextStyle(fontStyle = FontStyle.Normal, fontWeight = FontWeight.Bold)
+            )
+                Text(
+                    genres,
+                    fontSize = Font12sp
+                )
+        }
 
         Text(
             stringResource(R.string.release_date_label, movie.releaseDate),

@@ -4,6 +4,7 @@ import android.content.Context
 import android.net.ConnectivityManager
 import com.example.listmovies.usecase.GetPopularMoviesUseCase
 import com.example.listmovies.presentation.viewmodel.MovieViewModel
+import com.example.listmovies.usecase.GetGenresUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -17,9 +18,10 @@ object ListViewModelModule {
     @Provides
     fun provideListViewModel(
         getPopularMoviesUseCase: GetPopularMoviesUseCase,
+        getGenresUseCase: GetGenresUseCase,
         connectionManager: ConnectivityManager
     ): MovieViewModel {
-        return MovieViewModel(getPopularMoviesUseCase, connectionManager)
+        return MovieViewModel(getPopularMoviesUseCase, getGenresUseCase, connectionManager)
     }
 
     @Provides

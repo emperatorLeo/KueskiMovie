@@ -10,6 +10,7 @@ data class PopularMovie(
     @SerializedName("original_language") val language: String,
     @SerializedName("original_title") val title: String,
     @SerializedName("overview") val description: String,
+    @SerializedName("genre_ids") val genreIds: List<Int>,
     @SerializedName("poster_path") val posterImage: String,
     @SerializedName("release_date") val releaseDate: String,
 ) {
@@ -18,6 +19,7 @@ data class PopularMovie(
         language = language,
         title = title,
         description = description,
+        genresIds = genreIds,
         posterImage = posterImage,
         releaseDate = releaseDate
     )

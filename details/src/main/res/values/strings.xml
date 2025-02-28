@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="lenguage_label">Idioma: %s</string>
-    <string name="release_date_label">Release date: %s</string>
-
+    <string name="release_date_label">Fecha de lanzamiento: %s</string>
+    <string name="genre_label">Generos:</string>
 </resources>

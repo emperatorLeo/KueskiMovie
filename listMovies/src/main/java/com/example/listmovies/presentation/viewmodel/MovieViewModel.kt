@@ -5,8 +5,10 @@ import android.net.Network
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import arrow.core.Either
+import com.example.listmovies.domain.GenreDto
 import com.example.listmovies.domain.PopularMovieDto
 import com.example.listmovies.presentation.states.UiState
+import com.example.listmovies.usecase.GetGenresUseCase
 import com.example.listmovies.usecase.GetPopularMoviesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -17,6 +19,7 @@ import javax.inject.Inject
 @HiltViewModel
 class MovieViewModel @Inject constructor(
     private val getPopularMoviesUseCase: GetPopularMoviesUseCase,
+    private val getGenreUseCase: GetGenresUseCase,
     private val connectivity: ConnectivityManager,
 ) :
     ViewModel() {
@@ -27,6 +30,8 @@ class MovieViewModel @Inject constructor(
     private val connectionStatus = _connectionStatus.asStateFlow()
 
     private val cacheMovieList = mutableListOf<PopularMovieDto>()
+    private val cacheGenreList = mutableListOf<GenreDto>()
+    val genreMovie = mutableListOf<GenreDto>()
 
     fun getPopularMovies() {
         viewModelScope.launch {
@@ -44,10 +49,27 @@ class MovieViewModel @Inject constructor(
                             cacheMovieList.clear()
                             cacheMovieList.addAll(it.value)
                             _uiState.value = UiState.Success(it.value)
+                            getGenres()
                         }
                     }
                 }
             }
+        }
+    }
+
+    private suspend fun getGenres() {
+        getGenreUseCase.invoke().collect {
+            when (it) {
+                is Either.Left -> {
+                    _uiState.value = UiState.Error(it.value.message ?: "Error message")
+                }
+
+                is Either.Right -> {
+                    cacheGenreList.clear()
+                    cacheGenreList.addAll(it.value)
+                }
+            }
+
         }
     }
 
@@ -72,7 +94,16 @@ class MovieViewModel @Inject constructor(
         })
     }
 
-    fun getSelectedMovie(movieId: Int) =
-        cacheMovieList.find { it.id == movieId } ?: PopularMovieDto.EMPTY
+    fun getSelectedMovie(movieId: Int): PopularMovieDto {
+        val movie = cacheMovieList.find { it.id == movieId } ?: PopularMovieDto.EMPTY
+        genreMovie.clear()
+        for (genreId in movie.genresIds) {
+            val genre = cacheGenreList.find { it.genreId == genreId }
+            if (genre != null) {
+                genreMovie.add(genre)
+            }
+        }
+        return movie
+    }
 
 }
