@@ -5,6 +5,7 @@ plugins {
     id(libs.plugins.hilt.kapt.get().pluginId)
     id(libs.plugins.hilt.plugin.get().pluginId)
     id(libs.plugins.ksp.plugin.get().pluginId)
+    id(libs.plugins.firebase.plugin.get().pluginId)
 }
 
 android {
@@ -55,6 +56,10 @@ dependencies {
     api(libs.hilt)
     api(libs.hilt.navigation)
     kapt(libs.hilt.kapt)
+
+    // Firebase
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.analytics)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
