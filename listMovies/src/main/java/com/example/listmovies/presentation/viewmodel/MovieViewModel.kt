@@ -26,7 +26,7 @@ class MovieViewModel @Inject constructor(
     private val _uiState = MutableStateFlow<UiState>(UiState.Idle)
     val uiState get() = _uiState.asStateFlow()
 
-    private val _connectionStatus = MutableStateFlow(false)
+    private val _connectionStatus = MutableStateFlow(true)
     private val connectionStatus = _connectionStatus.asStateFlow()
 
     private val cacheMovieList = mutableListOf<PopularMovieDto>()

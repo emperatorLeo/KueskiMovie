@@ -17,6 +17,9 @@ arrowVersion = "1.1.2"
 appcompat = "1.7.0"
 material = "1.12.0"
 coilVersion = "3.0.4"
+mockk-version = "1.13.6"
+coroutines-test-version = "1.9.0"
+androidx-arch-version = "2.2.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -46,6 +49,9 @@ androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 coil = { group = "io.coil-kt.coil3", name = "coil-compose",  version.ref = "coilVersion"}
 coil-network = { group = "io.coil-kt.coil3", name = "coil-network-okhttp",  version.ref = "coilVersion"}
+mockk = { group = "io.mockk", name = "mockk", version.ref = "mockk-version" }
+coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "coroutines-test-version" }
+androidx-arch-core-testing = { group = "androidx.arch.core", name = "core-testing", version.ref = "androidx-arch-version" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
