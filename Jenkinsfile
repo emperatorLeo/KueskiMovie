@@ -3,7 +3,7 @@ pipeline {
          docker {
              image 'gradle:8.13.0-jdk21'
              reuseNode true
-             args '-v $HOME/.gradle:/home/gradle/.gradle -v $ANDROID_HOME:/android/sdk'
+             //args '-v $HOME/.gradle:/home/gradle/.gradle -v $ANDROID_HOME:/android/sdk'
             }
     }
 
