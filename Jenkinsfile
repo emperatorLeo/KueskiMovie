@@ -2,9 +2,7 @@ pipeline {
     agent {
          docker {
              image 'gradle:8.13.0-jdk21'
-             reuseNode true
-             //args '-v $HOME/.gradle:/home/gradle/.gradle -v $ANDROID_HOME:/android/sdk'
-             args '/users/leonardosantana/.gradle:/home/gradle/.gradle -v /Users/leonardosantana/Library/Android/sdk'
+             args '-v $HOME/.gradle:/home/gradle/.gradle -v $ANDROID_HOME:/android/sdk'
             }
     }
 
