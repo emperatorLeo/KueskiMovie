@@ -14,6 +14,8 @@ pipeline {
         stage('Build') {
             steps {
             sh '''
+            apt-get update
+            apt-get install -y --no-install-recommends libncurses5
             ls -la
             gradle --version
             java --version
