@@ -14,6 +14,15 @@ pipeline {
         stage('Build') {
             steps {
             sh '''
+            apt-get update
+            apt-get install -y --no-install-recommends \
+            libncurses5 \
+            libstdc++6 \
+            zlib1g \
+            libz-dev \
+            libncurses-dev \
+            lib32stdc++6 \
+            lib32z1
             ls -la
             gradle --version
             java --version
