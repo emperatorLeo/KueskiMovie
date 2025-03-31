@@ -2,9 +2,22 @@ pipeline {
     agent any
 
     stages {
-        stage('Hello') {
+        stage('Build') {
+            agent {
+                 docker {
+                     image 'gradle:8.13.0-jdk21'
+                     reuseNode true
+                 }
+            }
             steps {
-                echo 'Hello World'
+            sh '''
+            ls -la
+            gradle --version
+            java --version
+            ./gradlew assembleDebug
+            echo 'finish build'
+            ls -la
+            '''
             }
         }
     }
