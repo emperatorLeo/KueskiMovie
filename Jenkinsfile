@@ -1,7 +1,7 @@
 pipeline {
     agent {
          docker {
-             image 'arm64v8/gradle:8.13.0-jdk21-alpine'
+             image 'amd64/gradle:8.13.0-jdk21-alpine'
              args '-v $HOME/.gradle:/home/gradle/.gradle'
             }
     }
