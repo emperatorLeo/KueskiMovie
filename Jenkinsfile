@@ -3,7 +3,6 @@ pipeline {
          docker {
              image 'gradle:8.13.0-jdk21'
              args '-v $HOME/.gradle:/home/gradle/.gradle'
-             user 'root'
             }
     }
 
@@ -15,8 +14,8 @@ pipeline {
         stage('Build') {
             steps {
             sh '''
-            apt-get update
-            apt-get install -y --no-install-recommends \
+            sudo apt-get update
+            sudo apt-get install -y --no-install-recommends \
             libncurses5 \
             libstdc++6 \
             zlib1g \
