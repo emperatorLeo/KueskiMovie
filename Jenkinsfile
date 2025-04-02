@@ -2,9 +2,8 @@ pipeline {
     agent {
          docker {
              image 'gradle:8.13.0-jdk21'
-             args '-v $HOME/.gradle:/home/gradle/.gradle -v /Users/leonardosantana/Library/Android/sdk:/android/sdk -w /app'
+             args '-v $HOME/.gradle:/home/gradle/.gradle -v /Users/leonardosantana/Library/Android/sdk:/android/sdk -w /app --entrypoint='
              customWorkspace '/app'
-             entrypoint ''
             }
     }
 
