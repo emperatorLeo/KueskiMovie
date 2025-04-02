@@ -1,45 +1,45 @@
 pipeline {
     agent {
-         docker {
-            // image 'gradle:8.13.0-jdk21'
-            image 'openjdk:21-slim'
-             args '-v $HOME/.gradle:/home/gradle/.gradle -v /Users/leonardosantana/Library/Android/sdk:/android/sdk -w /app --entrypoint='
-             customWorkspace '/app'
-            }
+        docker {'cimg/android:2025.04.1'}
     }
-
     environment {
-            ANDROID_HOME = "/android/sdk"
-        }
-
+     DIR = "https://github.com/emperatorLeo/KueskiMovie"
+    }
     stages {
-    stage('Checkout'){
-    steps {
-    sh 'whoami'
-    checkout scm
-    }
-    }
-        stage('Build') {
-            steps {
-            sh '''
-            apt-get update
-            apt-get install -y --no-install-recommends \
-            git \
-            libncurses5 \
-            libstdc++6 \
-            zlib1g \
-            libz-dev \
-            libncurses-dev \
-            lib32stdc++6 \
-            lib32z1
-            ls -la
-            git --version
-            java --version
-            ./gradlew assembleDebug
-            echo 'finish build'
-            ls -la
-            '''
+     stage('Checkout'){
+        steps {
+          sh 'git clone https://github.com/emperatorLeo/KueskiMovie.git'
+        }
+      }
+
+     stage('Setup'){
+        steps {
+            dir(DIR){
+                  sh 'chmod +x ./gradlew'
+                }
             }
         }
+
+     stage('Build') {
+        steps{
+          dir(DIR) {
+            sh './gradlew build'
+          }
+        }
+     }
+
+     stage('Run tests') {
+                 steps {
+                     dir(DIR) {
+                         sh './gradlew test'
+                 }
+             }
+        }
     }
+
+    post {
+            always {
+                cleanWs()
+            }
+        }
 }
