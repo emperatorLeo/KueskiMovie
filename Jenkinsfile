@@ -4,6 +4,7 @@ pipeline {
     }
     environment {
      DIR = "https://github.com/emperatorLeo/KueskiMovie"
+
     }
     stages {
      stage('Checkout'){
@@ -15,7 +16,7 @@ pipeline {
      stage('Setup'){
         steps {
             dir(DIR){
-                  sh 'chmod +x gradlew'
+                  sh 'chmod +x $HOME/.gradlew'
                 }
             }
         }
