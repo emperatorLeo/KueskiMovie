@@ -16,6 +16,7 @@ pipeline {
             sh '''
             sudo apt-get update
             sudo apt-get install -y --no-install-recommends \
+            git \
             libncurses5 \
             libstdc++6 \
             zlib1g \
@@ -24,6 +25,7 @@ pipeline {
             lib32stdc++6 \
             lib32z1
             ls -la
+            git --version
             gradle --version
             java --version
             ./gradlew assembleDebug
