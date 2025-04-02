@@ -1,7 +1,8 @@
 pipeline {
     agent {
          docker {
-             image 'gradle:8.13.0-jdk21'
+            // image 'gradle:8.13.0-jdk21'
+            image 'openjdk:21-slim'
              args '-v $HOME/.gradle:/home/gradle/.gradle -v /Users/leonardosantana/Library/Android/sdk:/android/sdk -w /app --entrypoint='
              customWorkspace '/app'
             }
