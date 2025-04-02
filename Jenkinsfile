@@ -17,7 +17,7 @@ pipeline {
         steps {
             dir(DIR){
                   sh '''
-                  ls -la
+                  ls -a
                   chmod +x /gradlew
                   '''
                 }
