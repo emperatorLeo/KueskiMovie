@@ -1,6 +1,6 @@
 pipeline {
     agent {
-        docker {'cimg/android:2025.04.1'}
+        docker {image 'cimg/android:2025.04.1'}
     }
     environment {
      DIR = "https://github.com/emperatorLeo/KueskiMovie"
