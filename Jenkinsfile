@@ -14,8 +14,9 @@ pipeline {
         stage('Build') {
             steps {
             sh '''
-            sudo apt-get update
-            sudo apt-get install -y --no-install-recommends \
+            apt-get update
+            apt-get install -y --no-install-recommends \
+            sudo \
             git \
             libncurses5 \
             libstdc++6 \
