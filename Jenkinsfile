@@ -16,7 +16,7 @@ pipeline {
      stage('Setup'){
         steps {
             dir(DIR){
-                  sh 'chmod +x $HOME/.gradlew'
+                  sh 'chmod +x .gradlew'
                 }
             }
         }
