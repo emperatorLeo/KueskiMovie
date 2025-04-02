@@ -14,6 +14,7 @@ pipeline {
         stage('Build') {
             steps {
             sh '''
+            mkdir -p /var/lib/apt/list/partial
             apt-get update
             apt-get install -y --no-install-recommends \
             sudo \
