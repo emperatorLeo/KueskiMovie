@@ -18,7 +18,8 @@ pipeline {
                   sh '''
                   pwd
                   chmod +x ./gradlew
-                  chmod +x ./gradlew androidDependencies
+                  ./gradlew detekt --auto-correct
+                  ./gradlew check
                   '''
             //    }
             }
