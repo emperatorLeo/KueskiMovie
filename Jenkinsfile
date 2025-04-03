@@ -4,7 +4,6 @@ pipeline {
     }
     environment {
      DIR = "https://github.com/emperatorLeo/KueskiMovie"
-
     }
     stages {
      stage('Checkout'){
@@ -18,7 +17,7 @@ pipeline {
             //dir(DIR){
                   sh '''
                   pwd
-                  chmod +x /var/jenkins_home/workspace/learn-jenkins-app/gradlew
+                  chmod +x ./gradlew
                   '''
             //    }
             }
@@ -41,10 +40,4 @@ pipeline {
              }
         }
     }
-
-  post {
-                     always {
-                          cleanWs()
-                       }
-                   }
 }
