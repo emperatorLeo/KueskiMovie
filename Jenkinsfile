@@ -15,29 +15,29 @@ pipeline {
 
      stage('Setup'){
         steps {
-            dir(DIR){
+            //dir(DIR){
                   sh '''
                   pwd
                   chmod +x /var/jenkins_home/workspace/learn-jenkins-app/gradlew
                   '''
-                }
+            //    }
             }
         }
 
      stage('Build') {
         steps{
-          dir(DIR) {
-           // sh './gradlew build'
-           sh '/var/jenkins_home/workspace/learn-jenkins-app/gradlew build'
-          }
+          //dir(DIR) {
+            sh './gradlew build'
+           //sh '/var/jenkins_home/workspace/learn-jenkins-app/gradlew build'
+        //  }
         }
      }
 
      stage('Run tests') {
                  steps {
-                     dir(DIR) {
+                //     dir(DIR) {
                          sh './gradlew test'
-                 }
+              //   }
              }
         }
     }
