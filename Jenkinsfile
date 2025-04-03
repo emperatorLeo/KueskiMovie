@@ -18,7 +18,7 @@ pipeline {
                   sh '''
                   pwd
                   chmod +x ./gradlew
-                  run: ./gradlew androidDependencies
+                  run ./gradlew androidDependencies
                   '''
             //    }
             }
