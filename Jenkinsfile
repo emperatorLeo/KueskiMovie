@@ -18,7 +18,7 @@ pipeline {
             dir(DIR){
                   sh '''
                   pwd
-                  chmod +x /gradlew
+                  chmod +x /var/jenkins_home/workspace/learn-jenkins-app/gradlew
                   '''
                 }
             }
@@ -40,4 +40,10 @@ pipeline {
              }
         }
     }
+
+  post {
+                     always {
+                          cleanWs()
+                       }
+                   }
 }
