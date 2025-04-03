@@ -17,7 +17,7 @@ pipeline {
         steps {
             dir(DIR){
                   sh '''
-                  ls -a
+                  pwd
                   chmod +x /gradlew
                   '''
                 }
@@ -40,4 +40,10 @@ pipeline {
              }
         }
     }
+
+    post {
+                   always {
+                        cleanWs()
+                     }
+                 }
 }
