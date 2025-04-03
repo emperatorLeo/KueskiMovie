@@ -11,10 +11,7 @@ pipeline {
     }
     stages {
      stage('Checkout'){
-     agent {
-       label 'any'
-     }
-        steps {
+      steps {
           sh'''
           whoami
           git clone https://github.com/emperatorLeo/KueskiMovie.git
