@@ -1,14 +1,26 @@
 pipeline {
     agent {
-        docker { image 'cimg/android:2025.04.1' }
+        docker {
+        image 'cimg/android:2025.04.1'
+        args '-v $HOME/.gradle:/root/.gradle -v
+        /Users/leonardosantana/Library/Android/sdk:/android/sdk -w /app'
+        }
     }
     environment {
-     DIR = "https://github.com/emperatorLeo/KueskiMovie"
+     //DIR = "https://github.com/emperatorLeo/KueskiMovie"
+     ANDROID_HOME = "/android/sdk"
     }
     stages {
      stage('Checkout'){
+     agent {
+       label 'android'
+     }
         steps {
-          sh 'git clone https://github.com/emperatorLeo/KueskiMovie.git'
+          sh'''
+          whoami
+          git clone https://github.com/emperatorLeo/KueskiMovie.git
+          '''
+          checkout scm
         }
       }
 
