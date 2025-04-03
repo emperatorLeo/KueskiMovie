@@ -27,7 +27,8 @@ pipeline {
      stage('Build') {
         steps{
           dir(DIR) {
-            sh './gradlew build'
+           // sh './gradlew build'
+           sh '/var/jenkins_home/workspace/learn-jenkins-app/gradlew build'
           }
         }
      }
