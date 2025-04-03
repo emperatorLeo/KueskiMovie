@@ -9,6 +9,7 @@ pipeline {
     stages {
      stage('Checkout'){
         steps {
+        cleanWs()
           sh 'git clone https://github.com/emperatorLeo/KueskiMovie.git'
         }
       }
@@ -40,10 +41,4 @@ pipeline {
              }
         }
     }
-
-    post {
-                   always {
-                        cleanWs()
-                     }
-                 }
 }
